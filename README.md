@@ -124,7 +124,17 @@ asyncio.run(send_messages())
 }
 ```
 
+#### Delete a Voronoi point
 
+```json
+{
+    "command": "removePoint",
+    "args": index,
+    "explanation": "Removing a new Voronoi point",
+    "requiresConfirmation": true,
+    "previewable": false
+}
+```
 
 
 
@@ -136,6 +146,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
