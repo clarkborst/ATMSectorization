@@ -25,7 +25,7 @@ either run sequentially or timed.
 Example:
 
 json
--
+----
 
 ```json
 {
@@ -94,9 +94,9 @@ asyncio.run(send_messages())
 
 ### Currently supported commands
 
-#### Adding a Voronoi point
+#### Creating a random environment
 
-JSON
+json
 ----
 
 ```json
@@ -127,6 +127,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
