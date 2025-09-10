@@ -86,7 +86,7 @@ async def send_messages():
             "command": "addPoint",
             "args": [100, 200],
             "requiresConfirmation": true,
-            "previewable": true
+            "previewable": false
         }))
 
 asyncio.run(send_messages())
@@ -125,6 +125,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
