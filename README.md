@@ -59,7 +59,36 @@ JSON
 
 ## Live Assistant
 
-It is possible to interact with the environment
+It is also possible to interact with the environment via an external Python application. Here, the Javascript application serves as a frontend, while an external Python script
+can send JSON strings to display messages and execute commands. *NOTE*: make sure to run the Javascript in the application!
+
+Here is a Python script example:
+
+Python
+----
+
+```python
+import asyncio
+import websockets
+import json
+
+async def send_messages():
+    uri = "ws://localhost:8080"
+    async with websockets.connect(uri) as websocket:
+        await websocket.send(json.dumps({
+            "message": "Hello from Python!"
+        }))
+        await asyncio.sleep(1)
+
+        await websocket.send(json.dumps({
+            "command": "addPoint",
+            "args": [100, 200],
+            "requiresConfirmation": true,
+            "previewable": true
+        }))
+
+asyncio.run(send_messages())
+```
 
 ### Adding a Voronoi point
 
@@ -94,6 +123,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
