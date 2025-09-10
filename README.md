@@ -1,4 +1,4 @@
-# Voronoi
+# Human-Machine Interface for ATM Sectorization with algorithmic support
 
 Simple Javascript project, using NodeJS and D3 library, demonstrating interactive Voronoi polygons with:
 - clipping to an "outer" polygon
@@ -24,3 +24,4 @@ dunno yet
 
 ## Project status
 Alpha release
+
