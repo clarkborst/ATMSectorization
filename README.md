@@ -92,7 +92,9 @@ async def send_messages():
 asyncio.run(send_messages())
 ```
 
-### Adding a Voronoi point
+### Currently supported commands
+
+#### Adding a Voronoi point
 
 JSON
 ----
@@ -125,6 +127,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
