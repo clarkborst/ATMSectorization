@@ -97,7 +97,6 @@ asyncio.run(send_messages())
 
 #### Displaying a text message
 
-json
 ----
 
 ```json
@@ -108,7 +107,6 @@ json
 
 #### Creating a random environment
 
-json
 ----
 
 ```json
@@ -139,6 +137,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
