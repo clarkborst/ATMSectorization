@@ -16,9 +16,10 @@ It is used as a prototype demonstrator and a baseline human-machine interface fo
 
 To run the application, just open the index.html in your browser. It requires the precompiled Javascript library in the subfolder /bundle/voronoi.js.  
 
-## Wizard-of-Oz Assistant
+## Oz Assistant
 
-It can 'replay' commands and display text messages defined in JSON file. This can be used to test-drive the information exchange workflow between a 'fake' AI agent supporting the human in
+Besides manually solving a challenging sectorization problem, it is possible to 'replay' commands and display text messages defined in JSON file. This can be used to test-drive the 
+information exchange and workflow between a 'fake' AI agent-- like a 'Wizard of Oz'--supporting the human in
 trying to solve the sectorization problem. The actions defined in the file can run sequentially or timed.
 
 Example:
@@ -93,6 +94,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
