@@ -20,8 +20,9 @@ To run the application, just open the index.html in your browser. It requires th
 Created by Clark Borst.
 
 ## License
-dunno yet
+GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
