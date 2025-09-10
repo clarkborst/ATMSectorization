@@ -159,8 +159,16 @@ asyncio.run(send_messages())
 returns:
 ```json
 {
-    "command": "getCellStats",
-    "args": index,
+    type: "confirmation",
+    command: "getCellStats",
+    status: "success",
+    args: i,
+    stats: {
+        mean: [],
+        min: [],
+        max: [],
+        std: []
+    }
 }
 ```
 
@@ -172,6 +180,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
