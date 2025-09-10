@@ -1,0 +1,27 @@
+{
+  "options": {
+    "sequential": true,
+    "stepDelay": 1500
+  },
+  "items": [
+    {
+      "time": 3000,
+      "message": "Hello! I’m Oz, your scripted assistant here to support your sectorization efforts.\n\nI don't have real intelligence - I replay timed messages and commands defined in a file and execute predefined commands in the future.",
+      "repeat": 0,
+      "interval": 7000,
+      "maxRuntime": 300000
+    },
+    {
+      "time": 13000,
+      "command": "addPoint",
+      "args": [100, 150],
+      "requiresConfirmation": true,
+      "explanation": "A new point at (100, 150) will improve robustness by 15%.",
+      "previewable": true
+    },
+    {
+      "time": 25000,
+      "message": "That's it! No more items are scheduled."
+    }
+  ]
+}
