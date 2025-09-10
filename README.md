@@ -24,8 +24,7 @@ either run sequentially or timed.
 
 Example:
 
-JSON
-----
+json message
 
 ```json
 {
@@ -127,6 +126,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
