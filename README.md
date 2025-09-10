@@ -112,7 +112,18 @@ asyncio.run(send_messages())
 }
 ```
 
-That was my JSON code block.
+#### Add a Voronoi point
+
+```json
+{
+    "command": "addPoint",
+    "args": [x, y],
+    "explanation": "Creating a new Voronoi point",
+    "requiresConfirmation": true,
+    "previewable": false
+}
+```
+
 
 
 
@@ -125,6 +136,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
