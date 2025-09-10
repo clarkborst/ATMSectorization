@@ -1,4 +1,4 @@
-# Human-Machine Interface for ATM Sectorization with algorithmic support
+# Human-Machine Interface for generic ATM sectorization with algorithmic support
 
 Simple Javascript project, using NodeJS and D3 library, demonstrating interactive Voronoi polygons with:
 - clipping to an "outer" polygon
@@ -24,5 +24,6 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
