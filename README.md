@@ -74,23 +74,53 @@ import asyncio
 import websockets
 import json
 
-async def send_messages():
-    uri = "ws://localhost:8080"
-    async with websockets.connect(uri) as websocket:
-        await websocket.send(json.dumps({
-            "message": "Hello from Python!"
-        }))
-        await asyncio.sleep(1)
+async def talk_to_browser():
+    uri = "ws://localhost:8080/ws"   # must match config.json in JS
 
+    async with websockets.connect(uri) as websocket:
+        print("[Python] Connected to browser assistant")
+
+        # Example 1: send a text message
+        await websocket.send(json.dumps({
+            "message": "Hello from Python client!"
+        }))
+
+        # Example 2: send a valid command
         await websocket.send(json.dumps({
             "command": "addPoint",
-            "args": [100, 200],
-            "explanation": "Creating a new Voronoi point",
-            "requiresConfirmation": true,
-            "previewable": false
+            "args": [20, 40]
         }))
 
-asyncio.run(send_messages())
+        # Example 3: send an invalid command
+        await websocket.send(json.dumps({
+            "type": "command",
+            "command": "addPoint",
+            "args": [200, -10]
+        }))
+
+        # Example 4: retrieve data
+        await websocket.send(json.dumps({
+            "command": "getNumCells",
+        }))
+
+        # Listen for replies from the browser
+        while True:
+            try:
+                response = await websocket.recv()
+                data = json.loads(response)
+                print("[Python] Received from browser:", json.dumps(data, indent=2))
+
+                if data.get("type") == "error":
+                    print(f"❌ Browser reported error: {data['reason']}")
+                elif data.get("type") == "confirmation":
+                    print(f"✅ Browser confirmed command {data['command']} with args {data['args']}")
+
+            except websockets.exceptions.ConnectionClosed:
+                print("[Python] Connection closed by browser")
+                break
+
+if __name__ == "__main__":
+    asyncio.run(talk_to_browser())
 ```
 
 ### Currently supported commands
@@ -180,6 +210,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
