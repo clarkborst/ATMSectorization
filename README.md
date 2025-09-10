@@ -95,6 +95,17 @@ asyncio.run(send_messages())
 
 ### Currently supported commands
 
+#### Displaying a text message
+
+json
+----
+
+```json
+{
+    "message": "Hello from Python!"
+}
+```
+
 #### Creating a random environment
 
 json
@@ -128,6 +139,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
