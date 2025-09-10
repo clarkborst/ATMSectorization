@@ -105,22 +105,14 @@ asyncio.run(send_messages())
 }
 ```
 
-#### Creating a random environment
+#### Initializing a random environment
 
 ----
 
 ```json
 {
-    "one": 2,
-    "three": {
-        "point_1": "point_2",
-        "point_3": 3.4
-    },
-    "list": [
-        "one",
-        "two",
-        "three"
-    ]
+    "command": initRandom,
+    "args": [width, height, numVoronoiPoints, numLines, numParticlesPerLine]
 }
 ```
 
@@ -137,6 +129,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
