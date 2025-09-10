@@ -19,7 +19,7 @@ To run the application, just open the index.html in your browser. It requires th
 ## Oz Assistant
 
 Besides manually solving a challenging sectorization problem, it is possible to 'replay' commands and display text messages defined in JSON file. This can be used to test-drive the 
-information exchange and workflow between a 'fake' AI agent-- like a 'Wizard of Oz'--supporting the human in trying to solve the sectorization problem. The actions defined in the file can 
+information exchange and workflow between a 'fake' AI agent (like a 'Wizard of Oz') supporting the human in trying to solve the sectorization problem. The actions defined in the file can 
 either run sequentially or timed.
 
 Example:
@@ -94,6 +94,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
