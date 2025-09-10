@@ -1,0 +1,28 @@
+{
+  "name": "voronoi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "wp --config webpack.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "canvg": "^4.0.3",
+    "d3-delaunay": "^6.0.4",
+    "polygon-clipping": "^0.15.7"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "css-loader": "^6.5.1",
+    "d3": "^7.9.0",
+    "d3-delaunay": "^6.0.4",
+    "polygon-clipping": "^0.15.7",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.97.1",
+    "webpack-nano": "^1.1.1"
+  }
+}

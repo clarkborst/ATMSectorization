@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voronoi Diagram</title>
+</head>
+<body>
+<h3>Time: <span id="timer">13:00:00</span></h3>
+    <div id="main-container">
+        <div id="voronoi-wrapper">
+<!--            <div class="tabs">-->
+<!--                <div class="tab active" data-tab="voronoi-container">Environment</div>-->
+<!--                <div class="tab" data-tab="graph-container">Graph</div>-->
+<!--            </div>-->
+            <!-- Tab Component 1 -->
+            <div class="tab-container" id="tabs1">
+                <div class="tabs">
+                    <div class="tab active" data-tab="environment">Environment</div>
+                    <div class="tab" data-tab="graph">Graph</div>
+                    <div class="tab" data-tab="heatmap">Heatmap</div>
+                </div>
+            </div>
+            <div class="tab-content active">
+                <div id="voronoi-container">
+                    <ul class="context-menu" id="context-menu"></ul>
+<!--                    <div class="context-menu" id="context-menu">-->
+<!--                        <ul></ul>-->
+<!--                    </div>-->
+<!--                    <div class="context-menu" id="element-menu">-->
+<!--                        <ul></ul>-->
+<!--                    </div>-->
+                </div>
+            </div>
+<!--                <div id="graph-container" class="tab-content">-->
+<!--                    <p>Content B</p>-->
+<!--                </div>-->
+<!--            <div id="voronoi-container" class="tab-content active">-->
+<!--&lt;!&ndash;                <h3>Interactive Voronoi Diagram with Polygon Clipping and Line Crossings</h3>&ndash;&gt;-->
+<!--                <div class="context-menu" id="context-menu">-->
+<!--&lt;!&ndash;                    <div id="add-point">Add Point</div>&ndash;&gt;-->
+<!--                    <div id="remove-point">Remove Point</div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <!-- Checkbox Controls Below the Canvas -->
+            <div class="gen-container">
+                <label><input type="number" id="sliderEnd" class="slider-end" value="0" min="0" max="120" step="10"></label>
+                <div class="slider-container">
+                    <input type="range" id="slider" min="0" max="120" value="0">
+                </div>
+            </div>
+            <p>Value: <span id="demo"></span></p>
+<!--            <div id ="scene"></div>-->
+<!--            &lt;!&ndash; Hidden file input to select JSON files &ndash;&gt;-->
+<!--            <input type="file" id="fileInput" accept=".json">-->
+<!--            <div id="controls">-->
+<!--                <label><input type="checkbox" id="toggleLines" checked> Show Lines</label>-->
+<!--                <label><input type="number" id="minLength" class="min-linelength" value="50" min="0" max="200" step="10">Min. length</label><br>-->
+<!--                <label><input type="checkbox" id="toggleCrossings" checked> Show Line Crossings</label>-->
+<!--                <label><input type="number" id="minDistance" class="min-crossdistance" value="20" min="0" max="200" step="10">Min. distance</label><br>-->
+<!--                <label><input type="checkbox" id="toggleIntersections" checked> Show Line-Voronoi Intersections</label>-->
+<!--                <label><input type="number" id="minVertex" class="min-vertex" value="10" min="0" max="200" step="5">Min. distance</label><br>-->
+<!--                <label><input type="checkbox" id="toggleParticles" checked> Show Particles</label><br>-->
+<!--                <label><input type="checkbox" id="toggleDelaunay" unchecked> Show Delaunay Triangulation</label><br>-->
+<!--                <label><input type="checkbox" id="toggleDirect"> Show Direct Lines</label><br>-->
+<!--                <label><input type="checkbox" id="togglePolygons" checked> Show Polygons</label><br>-->
+<!--                <label><input type="checkbox" id="toggleVoronoiPoints" checked> Show Voronoi Points</label>-->
+<!--            </div>-->
+        </div>
+        <div>
+            <!-- Tab Component 2 -->
+            <div class="tab-container" id="tabs2">
+                <div class="tabs">
+                    <div class="tab active" data-tab="chart-container">Chart</div>
+                    <div class="tab" data-tab="ai-container">Assistant</div>
+                    <div class="tab" data-tab="settings-container">Settings</div>
+                </div>
+                <div id="chart-container" class="tab-content active">
+                    <div id="barchart-container"></div>
+                    <div class="legend" id="legend"></div>
+                    <div>    <!-- Variance Display as Text Box -->
+                        <label for="peakBox"></label><input type="text" id="peakBox" class="peak-box" readonly />
+                        <label for="stdBox"></label><input type="text" id="stdBox" class="peak-box" readonly />
+                        <label for="meanBox"></label><input type="text" id="meanBox" class="peak-box" readonly />
+                        <label for="stabilityBox"></label><input type="text" id="stabilityBox" class="peak-box" readonly />
+                    </div>
+    <!--                    <p>Content X</p>-->
+<!--                    </div>-->
+                </div>
+                <div id="ai-container" class="tab-content">
+<!--                    <p>AI support stuff comes here...</p>-->
+                    <textarea id="oztext-box" readonly wrap="soft"></textarea>
+                    <div id="oz-confirm-dialog" class="oz-dialog">
+                        <p id="oz-confirm-message" class="oz-dialog-message"></p>
+                        <div class="oz-dialog-buttons">
+                            <button id="oz-confirm-preview">Preview</button>
+                            <button id="oz-confirm-yes">Yes</button>
+                            <button id="oz-confirm-no">No</button>
+                        </div>
+                    </div>
+                    <div id="ws-status" class="ws-status">🟡 Connecting...</div>
+<!--                    <div id="placeholder">-->
+<!--                        <div id="oz-confirm-dialog">-->
+<!--                            <div id="oz-confirm-message" style="margin-bottom: 20px;"></div>-->
+<!--                            <button id="oz-confirm-preview" style="margin-right: 10px;">Preview</button>-->
+<!--                            <button id="oz-confirm-yes">Yes</button>-->
+<!--                            <button id="oz-confirm-no" style="margin-left: 10px;">No</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+                <div id="settings-container" class="tab-content">
+                    <div id="controls">
+                        <label><input type="checkbox" id="toggleLines" checked> Show Lines</label>
+                        <label><input type="number" id="minLength" class="min-linelength" value="50" min="0" max="200" step="10">Min. length</label><br>
+                        <label><input type="checkbox" id="toggleCrossings" checked> Show Line Crossings</label>
+                        <label><input type="number" id="minDistance" class="min-crossdistance" value="20" min="0" max="200" step="10">Min. distance</label><br>
+                        <label><input type="checkbox" id="toggleIntersections" checked> Show Line-Voronoi Intersections</label>
+                        <label><input type="number" id="minVertex" class="min-vertex" value="10" min="0" max="200" step="5">Min. distance</label><br>
+                        <label><input type="checkbox" id="toggleParticles" checked> Show Particles</label><br>
+                        <label><input type="checkbox" id="toggleWeatherCell" unchecked> Show Weather</label><br>
+                        <label><input type="checkbox" id="toggleWindField" unchecked> Show Windfield</label><br>
+                        <label><input type="checkbox" id="toggleDelaunay" unchecked> Show Delaunay Triangulation</label><br>
+                        <label><input type="checkbox" id="toggleDirect"> Show Direct Lines</label><br>
+                        <label><input type="checkbox" id="togglePolygons" checked> Show Polygons</label><br>
+                        <label><input type="checkbox" id="toggleVoronoiPoints" checked> Show Voronoi Points</label>
+                    </div>
+                    <div>
+                        <label>Pathfinding:</label>
+                        <select class="pathfinder-menu">
+                            <option value="Dijkstra">Dijkstra</option>
+                            <option value="Astar">A*</option>
+                            <option value="Thetastar">Theta*</option>
+                        </select>
+                    </div>
+                    <div id ="scene"></div>
+                    <!-- Hidden file input to select JSON files -->
+                    <input type="file" id="fileInput" accept=".json">
+                </div>
+            </div>
+<!--            <div class="tabs">-->
+<!--                <div class="tab active" data-tab="barchart-container">Overview</div>-->
+<!--                <div class="tab" data-tab="line-container">Timeline</div>-->
+<!--                <div class="tab" data-tab="constraints-container">Constraints</div>-->
+<!--            </div>-->
+<!--            <div id="barchart-container" class="tab-content active">-->
+<!--                <h3>Voronoi Polygon Properties</h3>-->
+<!--            </div>-->
+<!--            <div id="line-container" class="tab-content">-->
+<!--                <h3>Content for Tab 2</h3>-->
+<!--            </div>-->
+<!--            <div id="constraints-container" class="tab-content">-->
+<!--                <h3>Content for Tab 3</h3>-->
+<!--            </div>-->
+            <!-- Legend under the bar chart -->
+<!--            <div class="legend" id="legend"></div>-->
+<!--            <div>    &lt;!&ndash; Variance Display as Text Box &ndash;&gt;-->
+<!--                <label for="peakBox"></label><input type="text" id="peakBox" class="peak-box" readonly />-->
+<!--                <label for="stdBox"></label><input type="text" id="stdBox" class="peak-box" readonly />-->
+<!--                <label for="meanBox"></label><input type="text" id="meanBox" class="peak-box" readonly />-->
+<!--                <label for="stabilityBox"></label><input type="text" id="stabilityBox" class="peak-box" readonly />-->
+<!--            </div>-->
+        </div>
+    </div>
+    <!-- Bundle JS -->
+    <script src="./bundle/voronoi.js"></script>
+</body>
+</html>
