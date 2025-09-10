@@ -24,7 +24,8 @@ either run sequentially or timed.
 
 Example:
 
-json message
+json
+----
 
 ```json
 {
