@@ -16,6 +16,34 @@ It is used as a prototype demonstrator and a baseline human-machine interface fo
 
 To run the application, just open the index.html in your browser. It requires the precompiled Javascript library in the subfolder /bundle/voronoi.js.  
 
+## Interacting with the application via WebSocket
+
+Code Block Test
+===============
+
+JSON
+----
+
+```json
+{
+    "one": 2,
+    "three": {
+        "point_1": "point_2",
+        "point_3": 3.4
+    },
+    "list": [
+        "one",
+        "two",
+        "three"
+    ]
+}
+```
+
+That was my JSON code block.
+
+
+
+
 ## Authors and acknowledgment
 Created by Clark Borst.
 
@@ -24,6 +52,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
