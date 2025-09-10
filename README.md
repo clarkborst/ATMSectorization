@@ -10,7 +10,7 @@ Javascript project, using NodeJS and D3 library, demonstrating interactive Voron
 - classic pathfinding algorithms to generate new lines avoiding static obstacles
 - saving and loading to JSON (handy for Python as well) and SVG
 
-It is used as a prototype demonstrator and a baseline human-machine interface for Dynamic Airspace Sectorization (DAS) within the AI4REALNET HORIZON-EU project.
+It is used as a prototype demonstrator and a baseline human-machine interface for Dynamic Airspace Sectorization (DAS) within the [AI4REALNET HORIZON-EU project](https://ai4realnet.eu/).
 
 ## Running the application
 
@@ -58,6 +58,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
