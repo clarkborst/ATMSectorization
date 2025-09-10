@@ -136,7 +136,17 @@ asyncio.run(send_messages())
 }
 ```
 
+#### Move a Voronoi point
 
+```json
+{
+    "command": "movePoint",
+    "args": [index, x, y],
+    "explanation": "Moving a new Voronoi point",
+    "requiresConfirmation": true,
+    "previewable": false
+}
+```
 
 ## Authors and acknowledgment
 Created by Clark Borst.
@@ -146,6 +156,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
