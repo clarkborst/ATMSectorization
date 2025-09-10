@@ -88,17 +88,23 @@ async def talk_to_browser():
         # Example 2: send a valid command
         await websocket.send(json.dumps({
             "command": "addPoint",
-            "args": [20, 40]
+            "args": [200, 150],
+            "requiresConfirmation": true,
+            "explanation": "A new point at (200, 150)",
+            "previewable": false
         }))
 
         # Example 3: send an invalid command
         await websocket.send(json.dumps({
             "type": "command",
             "command": "addPoint",
-            "args": [200, -10]
+            "args": [200, -10],
+            "requiresConfirmation": true,
+            "explanation": "A new point at (200, -10)",
+            "previewable": false
         }))
 
-        # Example 4: retrieve data
+        # Example 4: request to retrieve data
         await websocket.send(json.dumps({
             "command": "getNumCells",
         }))
@@ -210,6 +216,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
