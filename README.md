@@ -97,8 +97,6 @@ asyncio.run(send_messages())
 
 #### Displaying a text message
 
-----
-
 ```json
 {
     "message": "Hello from Python!"
@@ -106,8 +104,6 @@ asyncio.run(send_messages())
 ```
 
 #### Initializing a random environment
-
-----
 
 ```json
 {
@@ -129,6 +125,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
