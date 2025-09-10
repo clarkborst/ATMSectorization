@@ -111,7 +111,7 @@ asyncio.run(send_messages())
 
 ```json
 {
-    "command": initRandom,
+    "command": "initRandom",
     "args": [width, height, numVoronoiPoints, numLines, numParticlesPerLine]
 }
 ```
@@ -129,6 +129,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
