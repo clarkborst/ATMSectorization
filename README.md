@@ -85,6 +85,7 @@ async def send_messages():
         await websocket.send(json.dumps({
             "command": "addPoint",
             "args": [100, 200],
+            "explanation": "Creating a new Voronoi point",
             "requiresConfirmation": true,
             "previewable": false
         }))
@@ -127,6 +128,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
