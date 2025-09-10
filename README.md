@@ -1,6 +1,6 @@
 # Human-Machine Interface for (generic) ATM sectorization with algorithmic/AI support
 
-Javascript project, using NodeJS and D3 library, demonstrating interactive Voronoi polygons with:
+Standalone Javascript project, using NodeJS and D3 library, demonstrating interactive Voronoi polygons with:
 - clipping to an "outer" polygon
 - visualizing violation of various sectorization constraints (e.g., minimal line length, line crossing points being too close to polygon edges, etc.)
 - geometric "complexity" monitor per polygon
@@ -93,6 +93,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
