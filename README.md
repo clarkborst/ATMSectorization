@@ -102,7 +102,7 @@ asyncio.run(send_messages())
     "message": "Hello from Python!"
 }
 ```
-
+---
 #### Initializing a random environment
 
 ```json
@@ -111,7 +111,7 @@ asyncio.run(send_messages())
     "args": [width, height, numVoronoiPoints, numLines, numParticlesPerLine]
 }
 ```
-
+---
 #### Add a Voronoi point
 
 ```json
@@ -148,6 +148,22 @@ asyncio.run(send_messages())
 }
 ```
 
+#### Get cell complexity statistics
+
+```json
+{
+    "command": "getCellStats",
+    "args": index,
+}
+```
+returns:
+```json
+{
+    "command": "getCellStats",
+    "args": index,
+}
+```
+
 ## Authors and acknowledgment
 Created by Clark Borst.
 
@@ -156,6 +172,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
