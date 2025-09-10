@@ -1,4 +1,4 @@
-# Human-Machine Interface for generic ATM sectorization with algorithmic support
+# Human-Machine Interface for (generic) ATM sectorization with algorithmic/AI support
 
 Javascript project, using NodeJS and D3 library, demonstrating interactive Voronoi polygons with:
 - clipping to an "outer" polygon
@@ -12,14 +12,20 @@ Javascript project, using NodeJS and D3 library, demonstrating interactive Voron
 
 It is used as a prototype demonstrator and a baseline human-machine interface for Dynamic Airspace Sectorization (DAS) within the AI4REALNET EU project.
 
-## Getting started
+## Running the application
 
 To run the application, just open the index.html in your browser. It requires the precompiled Javascript library in the subfolder /bundle/voronoi.js.  
 
-## Interacting with the application via WebSocket
+## Wizard-of-Oz Assistant
 
-Code Block Test
-===============
+It can 'replay' commands and display text messages defined in JSON file. This can be used to test-drive the information exchange workflow between a 'fake' AI agent supporting the human in
+trying to solve the sectorization problem.
+
+## Live Assistant
+
+It is possible to interact with the environment
+
+### Adding a Voronoi point
 
 JSON
 ----
@@ -52,6 +58,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
