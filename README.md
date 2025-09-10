@@ -59,8 +59,10 @@ JSON
 
 ## Live Assistant
 
-It is also possible to interact with the environment via an external Python application. Here, the Javascript application serves as a frontend, while an external Python script
-can send JSON strings to display messages and execute commands. *NOTE*: make sure to run the Javascript in the application!
+It is also possible to interact with the environment via an external Python application. Here, the Javascript application serves as a frontend , while an external Python script
+can send JSON strings to display messages and execute commands. The Javascript application listens for incoming JSON messages and send information back to the Python script via WebSockets. 
+
+*NOTE*: make sure to run the Javascript application as server in the browser before running the Python script!
 
 Here is a Python script example:
 
@@ -123,6 +125,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
