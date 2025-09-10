@@ -19,7 +19,42 @@ To run the application, just open the index.html in your browser. It requires th
 ## Wizard-of-Oz Assistant
 
 It can 'replay' commands and display text messages defined in JSON file. This can be used to test-drive the information exchange workflow between a 'fake' AI agent supporting the human in
-trying to solve the sectorization problem.
+trying to solve the sectorization problem. The actions defined in the file can run sequentially or timed.
+
+Example:
+
+JSON
+----
+
+```json
+{
+  "options": {
+    "sequential": true,
+    "stepDelay": 1500
+  },
+  "items": [
+    {
+      "time": 3000,
+      "message": "Hello! I’m Oz, your scripted assistant here to support your sectorization efforts.\n\n",
+      "repeat": 0,
+      "interval": 7000,
+      "maxRuntime": 300000
+    },
+    {
+      "time": 13000,
+      "command": "addPoint",
+      "args": [100, 150],
+      "requiresConfirmation": true,
+      "explanation": "A new point at (100, 150) will improve robustness by 15%.",
+      "previewable": false
+    },
+    {
+      "time": 25000,
+      "message": "That's it! No more items are scheduled."
+    }
+  ]
+}
+```
 
 ## Live Assistant
 
@@ -58,6 +93,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
