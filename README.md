@@ -192,7 +192,7 @@ if __name__ == "__main__":
     "args": index,
 }
 ```
-returns:
+if index is valid, returns:
 ```json
 {
     "type": "confirmation",
@@ -208,6 +208,19 @@ returns:
 }
 ```
 
+if index is invalid, returns:
+```json
+{
+    "type": "error",
+    "command": "getCellStats",
+    "reason": "Cell does not exist",
+    "args": i,
+    "constraints": {
+        "i": [0, numCells-1] 
+    }
+}
+```
+
 ## Authors and acknowledgment
 Created by Clark Borst.
 
@@ -216,6 +229,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
