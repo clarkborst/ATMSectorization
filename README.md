@@ -154,7 +154,7 @@ if __name__ == "__main__":
 {
     "command": "addPoint",
     "args": [x, y],
-    "explanation": "Creating a new Voronoi point",
+    "explanation": "Creating a new Voronoi point, because...",
     "requiresConfirmation": true,
     "previewable": false
 }
@@ -166,7 +166,7 @@ if __name__ == "__main__":
 {
     "command": "removePoint",
     "args": index,
-    "explanation": "Removing a new Voronoi point",
+    "explanation": "Removing a new Voronoi point, because...",
     "requiresConfirmation": true,
     "previewable": false
 }
@@ -178,7 +178,7 @@ if __name__ == "__main__":
 {
     "command": "movePoint",
     "args": [index, x, y],
-    "explanation": "Moving a new Voronoi point",
+    "explanation": "Moving a new Voronoi point, because...",
     "requiresConfirmation": true,
     "previewable": false
 }
@@ -216,6 +216,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
