@@ -159,6 +159,7 @@ if __name__ == "__main__":
     "previewable": false
 }
 ```
+---
 
 #### Delete a Voronoi point
 
@@ -171,6 +172,7 @@ if __name__ == "__main__":
     "previewable": false
 }
 ```
+---
 
 #### Move a Voronoi point
 
@@ -183,6 +185,7 @@ if __name__ == "__main__":
     "previewable": false
 }
 ```
+---
 
 #### Get cell complexity statistics
 
@@ -220,6 +223,7 @@ if index is invalid, returns:
     }
 }
 ```
+---
 
 ## Authors and acknowledgment
 Created by Clark Borst.
@@ -229,6 +233,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
