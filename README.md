@@ -22,7 +22,7 @@ Besides manually solving a challenging sectorization problem, it is possible to 
 information exchange and workflow between a 'fake' AI agent (like a 'Wizard of Oz') supporting the human in trying to solve the sectorization problem. The action items defined in the file can 
 either run sequentially or timed.
 
-Example:
+Example file (to put in the folder <code style="color🍏">data/oz</code>:
 
 json
 ----
@@ -216,6 +216,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
