@@ -202,10 +202,10 @@ if index is valid, returns:
     "status": "success",
     "args": index,
     "stats": {
-        "mean": a,
-        "min":  b,
-        "max":  c,
-        "std":  d
+        "min" :  a,
+        "max" :  b,
+        "mean":  c,
+        "std" :  d
     }
 }
 ```
@@ -232,6 +232,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
