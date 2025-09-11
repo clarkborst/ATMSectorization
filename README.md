@@ -198,12 +198,12 @@ if index is valid, returns:
     "type": "confirmation",
     "command": "getCellStats",
     "status": "success",
-    "args": i,
+    "args": index,
     "stats": {
-        "mean": x,
-        "min":  y,
-        "max":  z,
-        "std":  q
+        "mean": a,
+        "min":  b,
+        "max":  c,
+        "std":  d
     }
 }
 ```
@@ -214,9 +214,9 @@ if index is invalid, returns:
     "type": "error",
     "command": "getCellStats",
     "reason": "Cell does not exist",
-    "args": i,
+    "args": index,
     "constraints": {
-        "i": [0, numCells-1] 
+        "index": [0, numCells-1] 
     }
 }
 ```
@@ -229,6 +229,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
