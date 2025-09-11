@@ -96,7 +96,6 @@ async def talk_to_browser():
 
         # Example 3: send an invalid command
         await websocket.send(json.dumps({
-            "type": "command",
             "command": "addPoint",
             "args": [200, -10],
             "requiresConfirmation": true,
@@ -233,6 +232,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
