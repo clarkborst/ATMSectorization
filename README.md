@@ -131,7 +131,7 @@ if __name__ == "__main__":
 
 ### Currently supported commands
 
-#### Displaying a text message
+#### Display a text message
 
 ```json
 {
@@ -139,7 +139,7 @@ if __name__ == "__main__":
 }
 ```
 ---
-#### Initializing a random environment
+#### Initialize a random environment
 
 ```json
 {
@@ -216,6 +216,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
