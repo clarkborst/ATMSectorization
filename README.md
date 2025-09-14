@@ -19,6 +19,9 @@ To run the application, you need to run <code>index.html</code> as a server. To 
   - install extension *Live Server*
   - in the explorer view, right click <code>index.html</code> and select <code>Open with Live Server</code>
 
+<img width="1708" height="908" alt="image" src="https://github.com/user-attachments/assets/74b62960-888d-4bac-9de8-a01fab386163" />
+
+
 Now you can directly interact with the default environment. Some useful pointers to start:
   - move Voronoi point: left mouse drag
   - delete Voronoi point: right click opens context menu
@@ -249,6 +252,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
