@@ -14,7 +14,11 @@ It is used as a prototype demonstrator and a baseline human-machine interface fo
 
 ## Running the application
 
-To run the application, just open the index.html in your browser. It requires the precompiled Javascript library in the subfolder /bundle/voronoi.js.  
+To run the application, you need to run <code>index.html</code> as a server. To do that, 
+  - download and install **Visual Studio Code** (a good tool for writing code)
+  - install extension *Live Server*
+  - in the explore view, right click <code>index.html</code> and select <code>Open with Live Server</code>
+
 
 ## Oz Assistant
 
@@ -232,6 +236,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
