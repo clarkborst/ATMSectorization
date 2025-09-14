@@ -94,20 +94,6 @@ async def talk_to_browser():
             "previewable": false
         }))
 
-        # Example 3: send an invalid command
-        await websocket.send(json.dumps({
-            "command": "addPoint",
-            "args": [200, -10],
-            "requiresConfirmation": true,
-            "explanation": "A new point at (200, -10)",
-            "previewable": false
-        }))
-
-        # Example 4: request to retrieve data
-        await websocket.send(json.dumps({
-            "command": "getNumCells",
-        }))
-
         # Listen for replies from the browser
         while True:
             try:
@@ -232,6 +218,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
