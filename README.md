@@ -95,7 +95,7 @@ import websockets
 import json
 
 async def talk_to_browser():
-    uri = "ws://localhost:8080/ws"   # must match config.json in JS
+    uri = "ws://localhost:8765/ws"   # JS server listens to port 8765
 
     async with websockets.connect(uri) as websocket:
         print("[Python] Connected to browser assistant")
@@ -252,6 +252,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
