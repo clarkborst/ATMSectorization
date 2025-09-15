@@ -31,7 +31,7 @@ Now you can directly interact with the default environment. Some useful pointers
   - animate (aircraft) particles over time: drag the time slider at the left bottom
   - activate 'no-go' areas to trigger airway re-routing: when in <code>Environment</code> tab, press and hold the <code>CTRL</code> key (reveals a grid), activate 'no-go' areas by left click and drag while holding <code>CTRL</code> pressed, release <code>CTRL</code> key to left pathfinder (default: Theta*) re-route airways to circumvent activated grid cells
   - deactivate 'no-go' areas:  when in <code>Environment</code> tab, press and hold the <code>CTRL</code> key (reveals a grid), deactivate 'no-go' areas by right click and drag while holding <code>CTRL</code> pressed, release <code>CTRL</code> key to left pathfinder (default: Theta*) re-route airways
-  - show predicted aircraft/particle count over time in sector/cell: in <code>Chart</code> tab, left click a barchart, reveals line chart rperesenting predicted particle count over 120 minutes (2 hrs). Left click on line chart again goes back to bar chart view
+  - show predicted aircraft/particle count over time in sector/cell: in <code>Chart</code> tab, left click a barchart, reveals line chart representing predicted particle count over 120 minutes (2 hrs). Left click on line chart again goes back to bar chart view
   - change settings: go to <code>Settings</code> tab to show/hide visual elements and change settings
   - saving and loading: go to <code>Settings</code> tab and save Environment as JSON file or SVG. Click <code>Load from JSON</code> to open a JSON file (NAV Portugal Santa Maria airspace available as example)   
 
@@ -254,6 +254,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
