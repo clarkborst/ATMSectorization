@@ -84,6 +84,8 @@ can send JSON strings to display messages and execute commands. The Javascript a
 
 <code style="color:red">**NOTE**: make sure to run the Javascript application as server in the browser before running the Python script!</code>
 
+The Javascript application uses port <code>8765</code> to listen for incoming messages and to send messages back to the client.
+
 Here is an example Python script to get you started:
 
 Python
@@ -252,6 +254,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
