@@ -15,7 +15,7 @@ It is used as a prototype demonstrator and a baseline human-machine interface fo
 ## Running the application
 
 To run the application, you need to run <code>index.html</code> as a server. To do that, 
-  - download and install **Visual Studio Code** (a good tool for writing code)
+  - download and install **Visual Studio Code**
   - install extension *Live Server*
   - in the explorer view, right click <code>index.html</code> and select <code>Open with Live Server</code>
 
@@ -24,13 +24,13 @@ To run the application, you need to run <code>index.html</code> as a server. To 
 
 Now you can directly interact with the default environment. Some useful pointers to start:
   - move Voronoi point: left mouse drag
-  - delete Voronoi point: right click opens context menu
+  - delete Voronoi point: right click opens context menu, select <code>remove point</code>
   - add Voronoi point: position mouse pointer where you want to add a point, right click to open context menu, select <code>add point</code>
   - switch between Voronoi/Polygon mode: position mouse pointer not on Voronoi point, right click to open context menu, shows current mode, select <code>mode:</code> to switch mode
   - cluster (k-means) Voronoi points: go to <code>Graph</code> tab, right click anywhere on the map outside a Voronoi point, select <code>cluster</code>
   - animate (aircraft) particles over time: drag the time slider at the left bottom
-  - activate 'no-go' areas to trigger airway re-routing: when in <code>Environment</code> tab, press and hold the CTRL key (reveals a grid), activate 'no-go' areas by left click and drag while holding CTRL pressed, release CTRL key to left pathfinder (default: Theta*) re-route airways to circumvent activated grid cells
-  - deactivate 'no-go' areas:  when in <code>Environment</code> tab, press and hold the CTRL key (reveals a grid), deactivate 'no-go' areas by right click and drag while holding CTRL pressed, release CTRL key to left pathfinder (default: Theta*) re-route airways
+  - activate 'no-go' areas to trigger airway re-routing: when in <code>Environment</code> tab, press and hold the <code>CTRL</code> key (reveals a grid), activate 'no-go' areas by left click and drag while holding <code>CTRL</code> pressed, release <code>CTRL</code> key to left pathfinder (default: Theta*) re-route airways to circumvent activated grid cells
+  - deactivate 'no-go' areas:  when in <code>Environment</code> tab, press and hold the <code>CTRL</code> key (reveals a grid), deactivate 'no-go' areas by right click and drag while holding <code>CTRL</code> pressed, release <code>CTRL</code> key to left pathfinder (default: Theta*) re-route airways
   - show predicted aircraft/particle count over time in sector/cell: in <code>Chart</code> tab, left click a barchart, reveals line chart rperesenting predicted particle count over 120 minutes (2 hrs). Left click on line chart again goes back to bar chart view
   - change settings: go to <code>Settings</code> tab to show/hide visual elements and change settings
   - saving and loading: go to <code>Settings</code> tab and save Environment as JSON file or SVG. Click <code>Load from JSON</code> to open a JSON file (NAV Portugal Santa Maria airspace available as example)   
@@ -252,6 +252,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
