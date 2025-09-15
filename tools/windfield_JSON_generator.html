@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wavy Jetstream + Swirl + Uniform Wind Field</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #fff;
+      font-family: sans-serif;
+    }
+    svg {
+      display: block;
+      margin: auto;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <svg id="windCanvas"></svg>
+
+  <script>
+    const width = 1280;
+    const height = 2000;
+
+    function generateWavyJetstream(width = 1280, height = 2000) {
+      const data = [];
+      const cols = 60;
+      const rows = 100;
+
+      const jetCenterY = x => height / 2 + 200 * Math.sin((2 * Math.PI * x) / width);
+      const jetWidth = 200;
+
+      for (let i = 0; i <= cols; i++) {
+        for (let j = 0; j <= rows; j++) {
+          const x = (i / cols) * width;
+          const y = (j / rows) * height;
+
+          const centerY = jetCenterY(x);
+          const distance = Math.abs(y - centerY);
+
+          const maxSpeed = 1.2;
+          const speed = maxSpeed * Math.exp(-((distance / jetWidth) ** 2));
+
+          const angle = 0.1 * Math.sin((2 * Math.PI * y) / height);
+          const vx = speed * Math.cos(angle);
+          const vy = speed * Math.sin(angle);
+
+          data.push({ x, y, vx, vy, speed });
+        }
+      }
+
+      return data;
+    }
+
+    function generateSwirlComponent(centerX, centerY, width, height, strength = 0.2) {
+      const data = [];
+      const cols = 60;
+      const rows = 100;
+
+      for (let i = 0; i <= cols; i++) {
+        for (let j = 0; j <= rows; j++) {
+          const x = (i / cols) * width;
+          const y = (j / rows) * height;
+
+          const dx = x - centerX;
+          const dy = y - centerY;
+          const dist = Math.sqrt(dx * dx + dy * dy) + 1e-5;
+
+          const speed = strength * Math.exp(-dist / 200);
+          const vx = -dy / dist * speed;
+          const vy = dx / dist * speed;
+
+          data.push({ x, y, vx, vy, speed });
+        }
+      }
+
+      return data;
+    }
+
+    function generateUniformField(width, height, cols = 60, rows = 100, magnitude = 1, direction = Math.PI / 6) {
+      const data = [];
+      const vx = magnitude * Math.cos(direction);
+      const vy = magnitude * Math.sin(direction);
+
+      for (let i = 0; i <= cols; i++) {
+        for (let j = 0; j <= rows; j++) {
+          const x = (i / cols) * width;
+          const y = (j / rows) * height;
+          data.push({ x, y, vx, vy, speed: magnitude });
+        }
+      }
+
+      return data;
+    }
+
+    function combineWindFields(fields) {
+      const combined = {};
+
+      fields.flat().forEach(p => {
+        const key = `${Math.round(p.x)}-${Math.round(p.y)}`;
+        if (!combined[key]) {
+          combined[key] = { x: p.x, y: p.y, vx: 0, vy: 0 };
+        }
+        combined[key].vx += p.vx;
+        combined[key].vy += p.vy;
+      });
+
+      return Object.values(combined).map(p => {
+        const speed = Math.sqrt(p.vx ** 2 + p.vy ** 2);
+        return { ...p, speed };
+      });
+    }
+
+    function drawQuiverPlot(svg, data) {
+      svg.selectAll("line").remove();
+
+      svg.selectAll("line")
+        .data(data)
+        .enter()
+        .append("line")
+        .attr("x1", d => d.x)
+        .attr("y1", d => d.y)
+        .attr("x2", d => d.x + d.vx * 10)
+        .attr("y2", d => d.y + d.vy * 10)
+        .attr("stroke", "#555")
+        .attr("stroke-width", 1)
+        .attr("marker-end", "url(#arrow)");
+    }
+
+    function downloadWindField(data, filename = "windfield.json") {
+      const json = JSON.stringify(data, null, 2);
+      const blob = new Blob([json], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      link.click();
+
+      URL.revokeObjectURL(url);
+    }
+
+    const svg = d3.select("#windCanvas")
+      .attr("width", width)
+      .attr("height", height);
+
+    svg.append("defs")
+      .append("marker")
+      .attr("id", "arrow")
+      .attr("viewBox", "0 -5 10 10")
+      .attr("refX", 10)
+      .attr("refY", 0)
+      .attr("markerWidth", 4)
+      .attr("markerHeight", 4)
+      .attr("orient", "auto")
+      .append("path")
+      .attr("d", "M0,-5L10,0L0,5")
+      .attr("fill", "#555");
+
+    const jetstream = generateWavyJetstream(width, height);
+    const swirl = generateSwirlComponent(width / 2, height / 2, width, height, 3);
+    const swirl2 = generateSwirlComponent(width / 4, height / 4, width, height, -1.5);
+    const uniform = generateUniformField(width, height, 60, 100, 1.2, Math.PI / 6);
+    const combined = combineWindFields([jetstream, swirl, swirl2, uniform]);
+    //const combined = combineWindFields([jetstream, uniform]);
+
+    drawQuiverPlot(svg, combined);
+    downloadWindField(combined);
+  </script>
+</body>
+</html>
