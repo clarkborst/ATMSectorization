@@ -1,0 +1,30 @@
+{
+  "btn-solve": {
+    "label": "Solve",
+    "command": "clusterPoints",
+    "args": [],
+    "requiresConfirmation": true,
+    "explanation": "Do you want me to find a solution by clustering Voronoi points to cluster centers formed by route intersections?",
+    "previewable": false
+  },
+  "btn-problems": {
+    "label": "Problems",
+    "command": "detectProblems",
+    "args": [],
+    "requiresConfirmation": true,
+    "explanation": "Do you want me to detect problems and show them on the map?",
+    "previewable": false
+  },
+  "btn-kpi": {
+    "label": "KPI",
+    "command": "collectKPIs",
+    "args": [],
+    "requiresConfirmation": true,
+    "explanation": "Do you want me to collect KPIs and display them?",
+    "previewable": false
+  },
+  "btn-help": {
+    "label": "Help",
+    "message": "Sorry, cannot help you further at this moment..."
+  }
+}
