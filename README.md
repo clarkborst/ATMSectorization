@@ -79,12 +79,11 @@ json
 
 ## Live Assistant (Untested, work in progress!!)
 
-It is also possible to interact with the environment via an external Python application. Here, the Javascript application serves as a frontend (server), while an external Python script (client)
-can send JSON strings to display messages and execute commands. The Javascript application listens for incoming JSON messages and send JSON reports back to the Python script via WebSocket. 
+It is also possible to interact with the environment via an external Python application. Here, the Javascript application serves as a frontend (client), while an external Python script (server) can send JSON strings to display messages and execute commands. The Javascript application listens for incoming JSON messages and send JSON reports back to the Python script via WebSocket. 
 
-<code style="color:red">**NOTE**: make sure to run the Javascript application as server in the browser before running the Python script!</code>
+<code style="color:red">**NOTE**: make sure to run the Python script (server) first and then start the Javascript application (client)!</code>
 
-The Javascript application uses port <code>8765</code> to listen for incoming messages and to send messages back to the client.
+The Javascript application uses port <code>8765</code> to listen for incoming messages and to send messages back to the server.
 
 Here is an example Python script to get you started:
 
@@ -96,58 +95,64 @@ import asyncio
 import websockets
 import json
 
-async def talk_to_browser():
-    uri = "ws://localhost:8765/ws"   # JS server listens to port 8765
+async def handler(ws, path):
+    print("[Python] Browser connected")
 
-    async with websockets.connect(uri) as websocket:
-        print("[Python] Connected to browser assistant")
+    # Example 1: send a text message
+    await ws.send(json.dumps({
+        "message": "Hello from Python server!"
+    }))
 
-        # Example 1: send a text message
-        await websocket.send(json.dumps({
-            "message": "Hello from Python client!"
-        }))
+    # Example 2: send a valid command
+    await ws.send(json.dumps({
+        "command": "addPoint",
+        "args": [200, 150],
+        "requiresConfirmation": True,
+        "explanation": "A new point at (200, 150)",
+        "previewable": False
+    }))
 
-        # Example 2: send a valid command
-        await websocket.send(json.dumps({
-            "command": "addPoint",
-            "args": [200, 150],
-            "requiresConfirmation": True,
-            "explanation": "A new point at (200, 150)",
-            "previewable": False
-        }))
+    # Example 3: send an invalid command
+    await ws.send(json.dumps({
+        "command": "addPoint",
+        "args": [200, -10],
+        "requiresConfirmation": True,
+        "explanation": "A new point at (200, -10)",
+        "previewable": False
+    }))
 
-        # Example 3: send an invalid command
-        await websocket.send(json.dumps({
-            "command": "addPoint",
-            "args": [200, -10],
-            "requiresConfirmation": True,
-            "explanation": "A new point at (200, -10)",
-            "previewable": False
-        }))
+    # Example 4: request to retrieve data
+    await ws.send(json.dumps({
+        "command": "getNumCells"
+    }))
 
-        # Example 4: request to retrieve data
-        await websocket.send(json.dumps({
-            "command": "getNumCells",
-        }))
-
-        # Listen for replies from the browser
-        while True:
+    # ✅ Listen for replies from the browser
+    try:
+        async for msg in ws:
             try:
-                response = await websocket.recv()
-                data = json.loads(response)
+                data = json.loads(msg)
                 print("[Python] Received from browser:", json.dumps(data, indent=2))
 
                 if data.get("type") == "error":
                     print(f"❌ Browser reported error: {data['reason']}")
                 elif data.get("type") == "confirmation":
-                    print(f"✅ Browser confirmed command {data['command']} with args {data['args']}")
+                    print(f"✅ Browser confirmed command {data['command']} with args {data.get('args')}")
+            except json.JSONDecodeError:
+                print("[Python] Invalid JSON from browser:", msg)
 
-            except websockets.exceptions.ConnectionClosed:
-                print("[Python] Connection closed by browser")
-                break
+    except websockets.exceptions.ConnectionClosed:
+        print("[Python] Browser disconnected")
+
+
+async def main():
+    host, port = "localhost", 8765
+    print(f"[Python] WebSocket server running at ws://{host}:{port}/ws")
+    async with websockets.serve(handler, host, port, path="/ws"):
+        await asyncio.Future()  # run forever
+
 
 if __name__ == "__main__":
-    asyncio.run(talk_to_browser())
+    asyncio.run(main())
 ```
 
 ### Currently supported commands
@@ -254,6 +259,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
