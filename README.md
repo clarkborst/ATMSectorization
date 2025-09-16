@@ -85,7 +85,7 @@ It is also possible to interact with the environment via an external Python appl
 
 The Javascript application uses port <code>8765</code> to listen for incoming messages and to send messages back to the server.
 
-Here is an example Python script to get you started:
+Here is an example Python script (server) to get you started:
 
 Python
 ----
@@ -259,6 +259,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
