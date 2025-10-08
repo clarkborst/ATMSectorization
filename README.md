@@ -97,6 +97,7 @@ To enable a Live Assistant, edit the file <code>data/settings/default.json</code
   "assistant": "live",
   ...
 ```
+Restart the client.
 
 Here is an example Python script (server) to get you started:
 
@@ -340,6 +341,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
