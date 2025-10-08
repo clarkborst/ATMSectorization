@@ -299,16 +299,16 @@ Accepted levels are the following strings: "Low", "Medium" or "High"
 ```json
 {
     "command": "getCellStats",
-    "args": index,
+    "args": [index, t_start, t_end],
 }
 ```
-if index is valid, returns:
+if index and time span [0, 240] are valid, returns:
 ```json
 {
     "type": "confirmation",
     "command": "getCellStats",
     "status": "success",
-    "args": index,
+    "args": [index, t_start, t_end],
     "stats": {
         "min" :  a,
         "max" :  b,
@@ -319,7 +319,7 @@ if index is valid, returns:
 }
 ```
 
-if index is invalid, returns:
+if index or time span is invalid, returns:
 ```json
 {
     "type": "error",
@@ -333,6 +333,29 @@ if index is invalid, returns:
 ```
 ---
 
+#### Get all cell complexity statistics
+```json
+{
+    "command": "getAllCellStats",
+    "args": [t_start, t_end],
+}
+```
+if time span is valid, returns:
+```json
+{
+    "type": "confirmation",
+    "command": "getAllCellStats",
+    "status": "success",
+    "args": [t_start, t_end],
+    "stats": {
+        "min" :  a,
+        "max" :  b,
+        "mean":  c,
+        "std" :  d,
+    }
+}
+```
+
 ## Authors and acknowledgment
 Created by Clark Borst.
 
@@ -341,6 +364,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
