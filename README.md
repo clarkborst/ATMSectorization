@@ -14,7 +14,7 @@ It is used as a prototype demonstrator and a baseline human-machine interface fo
 
 ## Running the application
 
-To run the application, you need to run <code>index.html</code> as a server. To do that, 
+To run the application, you need to run <code>index.html</code> as a client. To do that, 
   - download and install **Visual Studio Code**
   - install extension *Live Server*
   - in the explorer view, right click <code>index.html</code> and select <code>Open with Live Server</code>
@@ -341,6 +341,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
