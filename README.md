@@ -77,7 +77,7 @@ json
 }
 ```
 
-## Live Assistant (Untested, work in progress!!)
+## Live Assistant
 
 It is also possible to interact with the environment via an external Python application. Here, the Javascript application serves as a frontend (client), while an external Python script (server) can send JSON strings to display messages and execute commands. The Javascript application listens for incoming JSON messages and send JSON reports back to the Python script via WebSocket. 
 
@@ -95,50 +95,63 @@ import asyncio
 import websockets
 import json
 
-async def handler(ws, path):
-    print("[Python] Browser connected")
-
-    # Example 1: send a text message
-    await ws.send(json.dumps({
+# Predefined queue of messages to send AFTER "start" is received
+QUEUED_MESSAGES = [
+    {
         "message": "Hello from Python server!"
-    }))
-
-    # Example 2: send a valid command
-    await ws.send(json.dumps({
+    },
+    {
         "command": "addPoint",
         "args": [200, 150],
-        "requiresConfirmation": True,
+        "requiresConfirmation": False,
         "explanation": "A new point at (200, 150)",
-        "previewable": False
-    }))
-
-    # Example 3: send an invalid command
-    await ws.send(json.dumps({
+    },
+    {
         "command": "addPoint",
         "args": [200, -10],
         "requiresConfirmation": True,
         "explanation": "A new point at (200, -10)",
-        "previewable": False
-    }))
-
-    # Example 4: request to retrieve data
-    await ws.send(json.dumps({
+    },
+    {
         "command": "getNumCells"
-    }))
+    },
+    {
+        "command": "randomPerturbation",
+        "args": ["Medium"]
+    }
+]
 
-    # ✅ Listen for replies from the browser
+async def send_queued_messages(ws):
+    """Send queued messages one by one with a 1-second delay."""
+    for msg in QUEUED_MESSAGES:
+        await asyncio.sleep(1)
+        await ws.send(json.dumps(msg))
+        print(f"[Python] Sent: {msg}")
+
+async def handler(ws, path):
+    print("[Python] Browser connected — waiting for 'start' message...")
+
     try:
-        async for msg in ws:
+        async for raw in ws:
             try:
-                data = json.loads(msg)
-                print("[Python] Received from browser:", json.dumps(data, indent=2))
-
-                if data.get("type") == "error":
-                    print(f"❌ Browser reported error: {data['reason']}")
-                elif data.get("type") == "confirmation":
-                    print(f"✅ Browser confirmed command {data['command']} with args {data.get('args')}")
+                data = json.loads(raw)
             except json.JSONDecodeError:
-                print("[Python] Invalid JSON from browser:", msg)
+                print("[Python] Invalid JSON from browser:", raw)
+                continue
+
+            print("[Python] Received from browser:", json.dumps(data, indent=2))
+
+            # ✅ Only start sending after receiving {"type": "conformation"} and {"command": "start"} from client (pressing Start button)
+            if data.get("type") == "conformation" and data.get("command") == "start":
+                print("[Python] ✅ Received START signal — sending queued messages...")
+                await send_queued_messages(ws)
+                continue
+
+            # ✅ Handle replies from browser (errors, confirmations, etc.)
+            if data.get("type") == "error":
+                print(f"❌ Browser reported error: {data['reason']}")
+            elif data.get("type") == "confirmation":
+                print(f"✅ Browser confirmed {data['command']} with args {data.get('args')}")
 
     except websockets.exceptions.ConnectionClosed:
         print("[Python] Browser disconnected")
@@ -148,7 +161,7 @@ async def main():
     host, port = "localhost", 8765
     print(f"[Python] WebSocket server running at ws://{host}:{port}/ws")
     async with websockets.serve(handler, host, port, path="/ws"):
-        await asyncio.Future()  # run forever
+        await asyncio.Future()
 
 
 if __name__ == "__main__":
@@ -173,6 +186,62 @@ if __name__ == "__main__":
     "args": [width, height, numVoronoiPoints, numLines, numParticlesPerLine]
 }
 ```
+
+#### Create random lines
+
+```json
+{
+    "command": "randomLines",
+    "args": [numLines]
+}
+```
+
+#### Jitter/perturb random lines
+
+```json
+{
+    "command": "jitterLines",
+    "args": [maxOffset]
+}
+```
+
+#### Create random particles along lines
+
+```json
+{
+    "command": "randomLineParticles",
+    "args": [numLineParticles]
+}
+```
+
+#### Create random Voronoi points
+
+```json
+{
+    "command": "randomVoronoiPoints",
+    "args": [numPoints]
+}
+```
+
+#### Create random Perturbation
+Accepted levels are: "Low", "Medium", "High"
+
+```json
+{
+    "command": "randomPerturbation",
+    "args": [level]
+}
+```
+
+#### Clear perturbations
+
+```json
+{
+    "command": "clearPerturbation",
+    "args": []
+}
+```
+
 ---
 #### Add a Voronoi point
 
@@ -181,8 +250,7 @@ if __name__ == "__main__":
     "command": "addPoint",
     "args": [x, y],
     "explanation": "Creating a new Voronoi point, because...",
-    "requiresConfirmation": true,
-    "previewable": false
+    "requiresConfirmation": true
 }
 ```
 ---
@@ -194,8 +262,7 @@ if __name__ == "__main__":
     "command": "removePoint",
     "args": index,
     "explanation": "Removing a new Voronoi point, because...",
-    "requiresConfirmation": true,
-    "previewable": false
+    "requiresConfirmation": false,
 }
 ```
 ---
@@ -207,8 +274,7 @@ if __name__ == "__main__":
     "command": "movePoint",
     "args": [index, x, y],
     "explanation": "Moving a new Voronoi point, because...",
-    "requiresConfirmation": true,
-    "previewable": false
+    "requiresConfirmation": false,
 }
 ```
 ---
@@ -232,7 +298,8 @@ if index is valid, returns:
         "min" :  a,
         "max" :  b,
         "mean":  c,
-        "std" :  d
+        "std" :  d,
+        "handoffs: e
     }
 }
 ```
@@ -259,6 +326,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
