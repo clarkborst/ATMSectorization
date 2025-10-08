@@ -141,7 +141,8 @@ async def handler(ws, path):
 
             print("[Python] Received from browser:", json.dumps(data, indent=2))
 
-            # ✅ Only start sending after receiving {"type": "conformation"} and {"command": "start"} from client (pressing Start button)
+            # ✅ Only start sending after receiving {"type": "conformation"} and {"command": "start"}
+            # from client (pressing Start button)
             if data.get("type") == "conformation" and data.get("command") == "start":
                 print("[Python] ✅ Received START signal — sending queued messages...")
                 await send_queued_messages(ws)
@@ -224,7 +225,7 @@ if __name__ == "__main__":
 ```
 
 #### Create random Perturbation
-Accepted levels are: "Low", "Medium", "High"
+Accepted levels are the following strings: "Low", "Medium" or "High"
 
 ```json
 {
@@ -299,7 +300,7 @@ if index is valid, returns:
         "max" :  b,
         "mean":  c,
         "std" :  d,
-        "handoffs: e
+        "handoffs": e
     }
 }
 ```
@@ -326,6 +327,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
