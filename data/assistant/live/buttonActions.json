@@ -1,4 +1,18 @@
 {
+  "btn-learn": {
+    "command": "start",
+    "args": [],
+    "requiresConfirmation": true,
+    "explanation": "Do you want me to run an external AI agent?",
+    "previewable": false
+  },
+  "btn-stop": {
+    "command": "stop",
+    "args": [],
+    "requiresConfirmation": false,
+    "explanation": "Stopping AI agent...",
+    "previewable": false
+  },
   "btn-help": {
     "label": "Help",
     "message": "Sorry, cannot help you further at this moment..."
