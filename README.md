@@ -142,7 +142,7 @@ async def send_queued_messages(ws):
         await ws.send(json.dumps(msg))
         print(f"[Python] Sent: {msg}")
 
-async def handler(ws, path):
+async def handler(ws):
     print("[Python] Browser connected — waiting for 'start' message...")
 
     try:
@@ -175,7 +175,7 @@ async def handler(ws, path):
 async def main():
     host, port = "localhost", 8765
     print(f"[Python] WebSocket server running at ws://{host}:{port}/ws")
-    async with websockets.serve(handler, host, port, path="/ws"):
+    async with websockets.serve(handler, host, port):
         await asyncio.Future()
 
 
@@ -341,6 +341,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
