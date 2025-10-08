@@ -155,9 +155,9 @@ async def handler(ws, path):
 
             print("[Python] Received from browser:", json.dumps(data, indent=2))
 
-            # ✅ Only start sending after receiving {"type": "conformation"} and {"command": "start"}
+            # ✅ Only start sending after receiving {"type": "confirmation"} and {"command": "start"}
             # from client (pressing Start button)
-            if data.get("type") == "conformation" and data.get("command") == "start":
+            if data.get("type") == "confirmation" and data.get("command") == "start":
                 print("[Python] ✅ Received START signal — sending queued messages...")
                 await send_queued_messages(ws)
                 continue
@@ -341,6 +341,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
