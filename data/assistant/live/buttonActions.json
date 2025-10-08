@@ -1,5 +1,6 @@
 {
   "btn-learn": {
+    "label" : "Start",
     "command": "start",
     "args": [],
     "requiresConfirmation": true,
@@ -7,6 +8,7 @@
     "previewable": false
   },
   "btn-stop": {
+    "label" : "Stop",
     "command": "stop",
     "args": [],
     "requiresConfirmation": false,
