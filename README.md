@@ -99,6 +99,11 @@ To enable a Live Assistant, edit the file <code>data/settings/default.json</code
 ```
 Restart the client.
 
+Now, when going to the Assistant tab, you should see this (when the Python server is not yet running):
+
+<img width="552" height="502" alt="image" src="https://github.com/user-attachments/assets/0eeee619-3efa-4d7f-9ee8-e8daaca4dce8" />
+
+
 Here is an example Python script (server) to get you started:
 
 Python
@@ -364,6 +369,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
