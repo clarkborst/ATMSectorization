@@ -6,94 +6,128 @@
 </head>
 <body>
 <h3>Time: <span id="timer">13:00:00</span></h3>
-    <div id="main-container">
-        <div id="voronoi-wrapper">
-            <!-- Tab Component 1 -->
-            <div class="tab-container" id="tabs1">
-                <div class="tabs">
-                    <div class="tab active" data-tab="environment">Environment</div>
-                    <div class="tab" data-tab="graph">Graph</div>
-                    <div class="tab" data-tab="heatmap">Heatmap</div>
-                </div>
+<div id="main-container">
+    <div id="voronoi-wrapper">
+        <div class="tab-container" id="tabs1">
+            <div class="tabs">
+                <div class="tab active" data-tab="environment">Environment</div>
+                <div class="tab" data-tab="graph">Graph</div>
+                <div class="tab" data-tab="heatmap">Heatmap</div>
+                <div class="tab" data-tab="reward">Reward</div>
             </div>
-            <div class="tab-content active">
-                <div id="voronoi-container">
-                    <ul class="context-menu" id="context-menu"></ul>
-                </div>
-            </div>
-            <!-- Checkbox Controls Below the Canvas -->
-            <div class="gen-container">
-                <label><input type="number" id="sliderEnd" class="slider-end" value="0" min="0" max="120" step="10"></label>
-                <div class="slider-container">
-                    <input type="range" id="slider" min="0" max="120" value="0">
-                </div>
-            </div>
-            <p>Value: <span id="demo"></span></p>
         </div>
-        <div>
-            <!-- Tab Component 2 -->
-            <div class="tab-container" id="tabs2">
-                <div class="tabs">
-                    <div class="tab active" data-tab="chart-container">Chart</div>
-                    <div class="tab" data-tab="ai-container">Assistant</div>
-                    <div class="tab" data-tab="settings-container">Settings</div>
+        <div class="tab-content active">
+            <div id="voronoi-container">
+                <ul class="context-menu" id="context-menu"></ul>
+            </div>
+        </div>
+        <!-- Checkbox Controls Below the Canvas -->
+        <div class="gen-container">
+            <label><input type="number" id="sliderEnd" class="slider-end" value="0" min="0" max="120" step="10"></label>
+            <div class="slider-container">
+                <input type="range" id="slider" min="0" max="120" value="0">
+            </div>
+        </div>
+        <p>Value: <span id="demo"></span></p>
+    </div>
+    <div>
+        <!-- Tab Component 2 -->
+        <div class="tab-container" id="tabs2">
+            <div class="tabs">
+                <div class="tab active" data-tab="chart-container">Chart</div>
+                <div class="tab" data-tab="ai-container">Assistant</div>
+                <div class="tab" data-tab="settings-container">Settings</div>
+            </div>
+            <div id="chart-container" class="tab-content active">
+                <div id="barchart-container"></div>
+                <div class="legend" id="legend"></div>
+                <div>    <!-- Variance Display as Text Box -->
+                    <label for="peakBox"></label><input type="text" id="peakBox" class="peak-box" readonly />
+                    <label for="stdBox"></label><input type="text" id="stdBox" class="peak-box" readonly />
+                    <label for="meanBox"></label><input type="text" id="meanBox" class="peak-box" readonly />
+                    <label for="stabilityBox"></label><input type="text" id="stabilityBox" class="peak-box" readonly />
                 </div>
-                <div id="chart-container" class="tab-content active">
-                    <div id="barchart-container"></div>
-                    <div class="legend" id="legend"></div>
-                    <div>    <!-- Variance Display as Text Box -->
-                        <label for="peakBox"></label><input type="text" id="peakBox" class="peak-box" readonly />
-                        <label for="stdBox"></label><input type="text" id="stdBox" class="peak-box" readonly />
-                        <label for="meanBox"></label><input type="text" id="meanBox" class="peak-box" readonly />
-                        <label for="stabilityBox"></label><input type="text" id="stabilityBox" class="peak-box" readonly />
+            </div>
+            <div id="ai-container" class="tab-content">
+                <textarea id="oztext-box" readonly wrap="soft"></textarea>
+                <div id="oz-confirm-dialog" class="oz-dialog">
+                    <p id="oz-confirm-message" class="oz-dialog-message"></p>
+                    <div class="oz-dialog-buttons">
+                        <button id="oz-confirm-preview">Preview</button>
+                        <button id="oz-confirm-yes">Yes</button>
+                        <button id="oz-confirm-no">No</button>
                     </div>
                 </div>
-                <div id="ai-container" class="tab-content">
-                    <textarea id="oztext-box" readonly wrap="soft"></textarea>
-                    <div id="oz-confirm-dialog" class="oz-dialog">
-                        <p id="oz-confirm-message" class="oz-dialog-message"></p>
-                        <div class="oz-dialog-buttons">
-                            <button id="oz-confirm-preview">Preview</button>
-                            <button id="oz-confirm-yes">Yes</button>
-                            <button id="oz-confirm-no">No</button>
-                        </div>
+                <div id="oz-buttons-container"></div>
+                <!-- Hidden GA Graph container -->
+                <div id="ga-graph-dialog" class="oz-dialog">
+                    <div class="oz-dialog-header">Optimizer: CMA-ES</div>
+
+                    <!-- KPI values -->
+                    <div id="ga-kpi">
+                        <span>Generation: <span id="ga-gen">0</span></span> |
+                        <span>Fitness: <span id="ga-fit">-</span></span> |
+                        <span>Std: <span id="ga-std">-</span></span> |
+                        <span>Handoffs: <span id="ga-handoffs">-</span></span> |
+                        <span>Max: <span id="ga-max">-</span></span>
                     </div>
-                    <div id="oz-buttons-container"></div>
-                    <div id="ws-status" class="ws-status">🟡 Connecting...</div>
+
+                    <svg id="ga-graph" width="500" height="200"></svg>
+
+                    <!-- Control buttons -->
+                    <div id="ga-controls">
+                        <button title="Start optimization" id="ga-start">▶</button>
+                        <button title="Stop optimization" id="ga-stop">⏹</button>
+                        <button title="Switch graph between Fitness and Pareto" id="ga-toggle">📈</button>
+                        <button title="Save preferred solutions" id="ga-save">💾↓</button>
+                        <button title="Load preferred solutions" id="ga-load">📁↑</button>
+                        <button title="Delete preferences" id="ga-delete">🗑️</button>
+                        <input id="load-pref-file" type="file" accept=".json" style="display:none" />
+                        <button title="Export graph to SVG" id="ga-export">🎨</button>
+                        <button title="Close dialog" id="ga-close">✖</button>
+                    </div>
                 </div>
-                <div id="settings-container" class="tab-content">
-                    <div id="controls">
-                        <label><input type="checkbox" id="toggleLines" checked> Show Lines</label>
-                        <label><input type="number" id="minLength" class="min-linelength" value="50" min="0" max="200" step="10">Min. length</label><br>
-                        <label><input type="checkbox" id="toggleCrossings" checked> Show Line Crossings</label>
-                        <label><input type="number" id="minDistance" class="min-crossdistance" value="20" min="0" max="200" step="10">Min. distance</label><br>
-                        <label><input type="checkbox" id="toggleIntersections" checked> Show Line-Voronoi Intersections</label>
-                        <label><input type="number" id="minVertex" class="min-vertex" value="10" min="0" max="200" step="5">Min. distance</label><br>
-                        <label><input type="checkbox" id="toggleParticles" checked> Show Particles</label><br>
-                        <label><input type="checkbox" id="toggleWeatherCell" unchecked> Show Weather</label><br>
-                        <label><input type="checkbox" id="toggleWindField" unchecked> Show Windfield</label><br>
-                        <label><input type="checkbox" id="toggleDelaunay" unchecked> Show Delaunay Triangulation</label><br>
-                        <label><input type="checkbox" id="toggleDirect"> Show Direct Lines</label><br>
-                        <label><input type="checkbox" id="togglePolygons" checked> Show Polygons</label><br>
-                        <label><input type="checkbox" id="toggleVoronoiPoints" checked> Show Voronoi Points</label>
-                    </div>
-                    <div>
-                        <label>Pathfinding:</label>
-                        <select class="pathfinder-menu">
-                            <option value="Dijkstra">Dijkstra</option>
-                            <option value="Astar">A*</option>
-                            <option value="Thetastar">Theta*</option>
-                        </select>
-                    </div>
-                    <div id ="scene"></div>
-                    <!-- Hidden file input to select JSON files -->
-                    <input type="file" id="fileInput" accept=".json">
+                <div id="ws-status" class="ws-status">🟡 Connecting...</div>
+            </div>
+            <div id="settings-container" class="tab-content">
+                <div id="controls">
+                    <p>Visibility</p>
+                    <label><input type="checkbox" id="toggleLines" checked> Show Lines</label>
+                    <label><input type="number" id="minLength" class="min-linelength" value="50" min="0" max="200" step="10">Min. length</label><br>
+                    <label><input type="checkbox" id="toggleCrossings" checked> Show Line Crossings</label>
+                    <label><input type="number" id="minDistance" class="min-crossdistance" value="20" min="0" max="200" step="10">Min. distance</label><br>
+                    <label><input type="checkbox" id="toggleIntersections" checked> Show Line-Voronoi Intersections</label>
+                    <label><input type="number" id="minVertex" class="min-vertex" value="10" min="0" max="200" step="5">Min. distance</label><br>
+                    <label><input type="checkbox" id="toggleParticles" checked> Show Particles</label><br>
+                    <label><input type="checkbox" id="toggleWeatherCell" unchecked> Show Weather</label><br>
+                    <label><input type="checkbox" id="toggleWindField" unchecked> Show Windfield</label><br>
+                    <label><input type="checkbox" id="toggleDelaunay" unchecked> Show Delaunay Triangulation</label><br>
+                    <label><input type="checkbox" id="toggleDirect"> Show Direct Lines</label><br>
+                    <label><input type="checkbox" id="togglePolygons" checked> Show Polygons</label><br>
+                    <label><input type="checkbox" id="toggleVoronoiPoints" checked> Show Voronoi Points</label>
+                </div>
+                <div>
+                    <p>Environment</p>
+                    <label>Pathfinding:</label>
+                    <select class="pathfinder-menu">
+                        <option value="Dijkstra">Dijkstra</option>
+                        <option value="Astar">A*</option>
+                        <option value="Thetastar">Theta*</option>
+                    </select>
+                </div>
+                <div id ="scene"></div>
+                <!-- Hidden file input to select JSON files -->
+                <input type="file" id="fileInput" accept=".json">
+                <div>
+                    <p>Optimizer</p>
+                    <label><input type="checkbox" id="ga-dyncenters" checked> Dynamic centers</label><br>
+                    <label><input type="checkbox" id="ga-preference" checked> Human-preferred search</label>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Bundle JS -->
-    <script src="./bundle/voronoi.js"></script>
+</div>
+<!-- Bundle JS -->
+<script src="./bundle/voronoi.js"></script>
 </body>
-
 </html>
