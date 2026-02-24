@@ -1,14 +1,25 @@
 {
   "btn-solve": {
-    "label": "Solve",
+    "label": "\uD83E\uDDE0",
+    "title": "Learn",
+    "command": "geneticOptimizer",
+    "args": [],
+    "requiresConfirmation": false,
+    "explanation": "⏳ Optimizing sectorization...",
+    "previewable": false
+  },
+  "btn-cluster": {
+    "label": "⠯",
+    "title": "Cluster Voronoi points",
     "command": "clusterPoints",
     "args": [],
     "requiresConfirmation": true,
-    "explanation": "Do you want me to find a solution by clustering Voronoi points to cluster centers formed by route intersections?",
+    "explanation": "Do you want me to cluster the Voronoi points by route intersections?",
     "previewable": false
   },
   "btn-problems": {
-    "label": "Problems",
+    "label": "⚠\uFE0F",
+    "title": "Report problems",
     "command": "detectProblems",
     "args": [],
     "requiresConfirmation": true,
@@ -16,15 +27,23 @@
     "previewable": false
   },
   "btn-kpi": {
-    "label": "KPI",
+    "label": "\uD83C\uDFAF",
+    "title": "Report KPIs",
     "command": "collectKPIs",
     "args": [],
-    "requiresConfirmation": true,
-    "explanation": "Do you want me to collect KPIs and display them?",
+    "requiresConfirmation": false,
+    "explanation": "⏳ Collecting KPIs...",
     "previewable": false
   },
   "btn-help": {
-    "label": "Help",
+    "label": "❔",
+    "title": "Get help",
     "message": "Sorry, cannot help you further at this moment..."
+  },
+  "btn-credits": {
+    "label": "\uD83D\uDEC8",
+    "title": "",
+    "command": "showCredits",
+    "args": []
   }
 }
