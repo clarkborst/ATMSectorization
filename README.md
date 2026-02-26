@@ -76,6 +76,18 @@ json
   ]
 }
 ```
+## Human-in-the-Loop Optimization through CMA-ES
+
+To support humans in constructing acceptable sectorizations, a stochastic multi-objective Interactive Evolutionary Computation (IEC) approach using Covariance Matrix Adaptation-Evolutionary Strategies (CMA-ES) has been embedded, coined here as iCMA-ES, to generate a diverse set of candidate sectorizations on the fly.  Within this framework, two competing objectives must be jointly optimized. First, sectors should be configured so that the predicted air traffic control officer (ATCO) taskload is evenly distributed, typically expressed by minimizing the standard deviation of workload across sectors to ensure balanced cognitive demand and sustainable operational performance. Second, the number of inter-sector hand-offs must be minimized, as each transfer of aircraft between sectors introduces coordination workload and potential complexity; reducing hand-offs promotes more continuous, unfragmented airspace structures.
+
+The evolutionary algorithm explores the solution space and presents a rich collection of alternatives at every iteration. These solutions are displayed to the human operator through an interactive Pareto frontier, where the user can visually inspect trade-offs across objectives and indicate preferred or rejected solutions with minimal cognitive effort. Each feedback action—selecting a promising configuration, rejecting a fragmented sector, or choosing a geometry that better aligns with expected traffic flows—provides a high-value learning signal.
+
+These sparse human signals feed into an adaptive kernel density reward model, which acts as a surrogate preference learner. The model incorporates each preference sample into a smooth reward landscape that guides future CMA-ES generations. The model dynamically adjusts its kernel size based on the consistency of human feedback:
+ - When the operator’s preferences are stable and coherent, the kernel narrows, creating sharper gradients that drive CMA-ES rapidly toward high-quality regions.
+ - When feedback is noisy, exploratory, or contradictory, the kernel broadens to avoid overfitting and maintain robust, diverse search behavior.
+
+![Sectorization_IEC_demo2](https://github.com/user-attachments/assets/efd5ec8b-c5fa-4f58-915a-ae65ad88290f)
+
 
 ## Live Assistant
 
@@ -369,6 +381,7 @@ GNU GPL 3.0
 
 ## Project status
 Alpha release
+
 
 
 
